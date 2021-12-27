@@ -7990,10 +7990,11 @@ var $author$project$Main$getAccessToken = F4(
 							[
 								A2($elm$http$Http$header, 'X-API-Key', '21fb29f290494bf3af8e86ed46a8d98e'),
 								A2($elm$http$Http$header, 'Access-Control-Allow-Origin', '*'),
-								A2($elm$http$Http$header, 'Access-Control-Allow-Methods', 'POST'),
-								A2($elm$http$Http$header, 'Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token')
+								A2($elm$http$Http$header, 'Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'),
+								A2($elm$http$Http$header, 'Access-Control-Allow-Headers', 'Authorization')
 							]),
-						authRequest.headers)
+						authRequest.headers),
+					method: 'POST'
 				}));
 	});
 var $author$project$Main$Authenticated = function (a) {
