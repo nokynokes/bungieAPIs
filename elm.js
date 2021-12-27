@@ -8083,7 +8083,11 @@ var $author$project$OAuthInfo$oauthConfig = {
 	scope: _List_Nil,
 	tokenEndpoint: _Utils_update(
 		$author$project$OAuthInfo$defaultHttpsUrl,
-		{host: 'bungie.net', path: '/Platform/App/OAuth/token/'})
+		{
+			host: 'bungie.net',
+			path: '/Platform/App/OAuth/token/',
+			query: $elm$core$Maybe$Just('grant_type=authorization_code')
+		})
 };
 var $author$project$Main$gotRandomBytes = F2(
 	function (model, bytes) {
