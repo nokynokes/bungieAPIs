@@ -7335,6 +7335,11 @@ var $author$project$Main$genRandomBytes = _Platform_outgoingPort('genRandomBytes
 var $author$project$Main$GotAccessToken = function (a) {
 	return {$: 'GotAccessToken', a: a};
 };
+var $elm$http$Http$Header = F2(
+	function (a, b) {
+		return {$: 'Header', a: a, b: b};
+	});
+var $elm$http$Http$header = $elm$http$Http$Header;
 var $truqu$elm_oauth2$OAuth$AuthorizationCode = {$: 'AuthorizationCode'};
 var $truqu$elm_oauth2$Internal$AuthenticationSuccess = F4(
 	function (token, refreshToken, expiresIn, scope) {
@@ -7490,11 +7495,6 @@ var $truqu$elm_oauth2$OAuth$grantTypeToString = function (g) {
 			return str;
 	}
 };
-var $elm$http$Http$Header = F2(
-	function (a, b) {
-		return {$: 'Header', a: a, b: b};
-	});
-var $elm$http$Http$header = $elm$http$Http$Header;
 var $chelovek0v$bbase64$Base64$Encode$StringEncoder = function (a) {
 	return {$: 'StringEncoder', a: a};
 };
@@ -7970,16 +7970,25 @@ var $elm$http$Http$request = function (r) {
 };
 var $author$project$Main$getAccessToken = F4(
 	function (config, redirectUri, code, codeVerifier) {
+		var authRequest = A2(
+			$truqu$elm_oauth2$OAuth$AuthorizationCode$PKCE$makeTokenRequest,
+			$author$project$Main$GotAccessToken,
+			{
+				code: code,
+				codeVerifier: codeVerifier,
+				credentials: {clientId: config.clientId, secret: $elm$core$Maybe$Nothing},
+				redirectUri: redirectUri,
+				url: config.tokenEndpoint
+			});
 		return $elm$http$Http$request(
-			A2(
-				$truqu$elm_oauth2$OAuth$AuthorizationCode$PKCE$makeTokenRequest,
-				$author$project$Main$GotAccessToken,
+			_Utils_update(
+				authRequest,
 				{
-					code: code,
-					codeVerifier: codeVerifier,
-					credentials: {clientId: config.clientId, secret: $elm$core$Maybe$Nothing},
-					redirectUri: redirectUri,
-					url: config.tokenEndpoint
+					headers: _List_fromArray(
+						[
+							A2($elm$http$Http$header, 'Access-Control-Allow-Origin', '*')
+						]),
+					method: 'POST'
 				}));
 	});
 var $author$project$Main$Authenticated = function (a) {
