@@ -7984,12 +7984,15 @@ var $author$project$Main$getAccessToken = F4(
 			_Utils_update(
 				authRequest,
 				{
-					headers: A2(
-						$elm$core$List$cons,
-						A2(
-							$elm$http$Http$header,
-							'Access-Control-Allow-Origin',
-							$elm$url$Url$toString(config.tokenEndpoint)),
+					headers: _Utils_ap(
+						_List_fromArray(
+							[
+								A2($elm$http$Http$header, 'Authorization', 'Basic 21fb29f290494bf3af8e86ed46a8d98e'),
+								A2(
+								$elm$http$Http$header,
+								'Access-Control-Allow-Origin',
+								$elm$url$Url$toString(config.tokenEndpoint))
+							]),
 						authRequest.headers)
 				}));
 	});
