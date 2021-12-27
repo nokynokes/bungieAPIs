@@ -181,7 +181,11 @@ getAccessToken config redirectUri code codeVerifier =
         }
     stringUrl = Url.toString redirectUri
   in
-    Http.request <| { authRequest | headers = [ Http.header "X-API-Key" "21fb29f290494bf3af8e86ed46a8d98e", Http.header "Access-Control-Allow-Origin" stringUrl ] ++ authRequest.headers }
+    Http.request <| { authRequest | headers =
+      [ Http.header "X-API-Key" "21fb29f290494bf3af8e86ed46a8d98e"
+      , Http.header "Access-Control-Allow-Origin" stringUrl
+      , Http.header "Access-Control-Allow-Methods" "POST"
+      ] ++ authRequest.headers }
 
 gotAccessToken : Model -> Result Http.Error OAuth.AuthenticationSuccess -> ( Model, Cmd Msg )
 gotAccessToken model authResponse =
