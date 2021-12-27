@@ -7989,7 +7989,8 @@ var $author$project$Main$getAccessToken = F4(
 						_List_fromArray(
 							[
 								A2($elm$http$Http$header, 'X-API-Key', '21fb29f290494bf3af8e86ed46a8d98e'),
-								A2($elm$http$Http$header, 'Access-Control-Allow-Origin', stringUrl)
+								A2($elm$http$Http$header, 'Access-Control-Allow-Origin', stringUrl),
+								A2($elm$http$Http$header, 'Access-Control-Allow-Methods', 'POST')
 							]),
 						authRequest.headers)
 				}));
