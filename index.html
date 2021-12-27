@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Bungie NET Auth</title>
+
+    <script src="elm.js"></script>
+  </head>
+  <body>
+    <div id="myApp"></div>
+  </body>
+  <script type="text/javascript">
+      function rememberedBytes() {
+        const bytes = localStorage.getItem("bytes");
+        return bytes ? bytes.split(",").map(x => parseInt(x,10)) : null;
+      }
+
+      const app = Elm.Main.init({
+        node: document.getElementById('myapp'),
+        flags: rememberedBytes()
+      });
+
+      app.ports.genRandomBytes.subscribe(n => {
+        const buffer = new Uint8Array(n);
+        crypto.getRandomValues(buffer);
+        const bytes = Array.from(buffer);
+        localStorage.setItem("bytes", bytes);
+        app.ports.randomBytes.send(bytes);
+      });
+
+      // app.ports.storeCache.subscribe(function(val) {
+      //
+      //   if (val === null) {
+      //     localStorage.removeItem(storageKey);
+      //   } else {
+      //     localStorage.setItem(storageKey, JSON.stringify(val));
+      //   }
+      //
+      //   // Report that the new session was stored successfully.
+      //   setTimeout(function() { app.ports.onStoreChange.send(val); }, 0);
+      // });
+      //
+      // // Whenever localStorage changes in another tab, report it if necessary.
+      // window.addEventListener("storage", function(event) {
+      //   if (event.storageArea === localStorage && event.key === storageKey) {
+      //     app.ports.onStoreChange.send(event.newValue);
+      //   }
+      // }, false);
+    </script>
+</html>
