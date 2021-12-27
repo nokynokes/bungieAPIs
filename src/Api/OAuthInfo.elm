@@ -1,6 +1,7 @@
-module OAuthInfo exposing (oauthConfig, Configuration)
+module OAuthInfo exposing (oauthConfig, Configuration, authHttpsUrl, tokenHttpsUrl)
 
 import Url exposing (Protocol(..), Url)
+import Url.Builder as UrlBuilder
 import OAuth
 import OAuth.AuthorizationCode.PKCE as OAuth
 import Http
@@ -22,12 +23,34 @@ defaultHttpsUrl =
     , fragment = Nothing
     }
 
+authHttpsUrl : Url
+authHttpsUrl =
+  { protocol = Https
+  , host = "bungie.net"
+  , path = "/en/OAuth/Authorize"
+  , port_ = Nothing
+  , query = Nothing
+  , fragment = Nothing
+  }
+
+tokenHttpsUrl : Url
+tokenHttpsUrl =
+  { protocol = Https
+  , host = "bungie.net"
+  , path = "/Platform/App/OAuth/token/"
+  , port_ = Nothing
+  , query = Nothing
+  , fragment = Nothing
+  }
+
+
+
 oauthConfig : Configuration
 oauthConfig =
   { authorizationEndpoint =
       { defaultHttpsUrl | host = "bungie.net", path = "/en/OAuth/Authorize" }
   , tokenEndpoint =
-      { defaultHttpsUrl | host = "bungie.net", path = "/platform/app/oauth/token/" }
-  , clientId = ""
-  , scope = ["ReadDestinyInventoryAndVault", "ReadBasicUserProfile", "MoveEquipDestinyItems", "ReadDestinyVendorsAndAdvisors"]
+      { defaultHttpsUrl | host = "bungie.net", path = "/Platform/App/OAuth/token/" }
+  , clientId = "38809"
+  , scope = []
   }
