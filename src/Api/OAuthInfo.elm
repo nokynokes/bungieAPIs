@@ -28,6 +28,6 @@ oauthConfig =
       { defaultHttpsUrl | host = "bungie.net", path = "/en/OAuth/Authorize" }
   , tokenEndpoint =
       { defaultHttpsUrl | host = "bungie.net", path = "/platform/app/oauth/token/" }
-  , clientId = "38809"
+  , clientId = ""
   , scope = ["ReadDestinyInventoryAndVault", "ReadBasicUserProfile", "MoveEquipDestinyItems", "ReadDestinyVendorsAndAdvisors"]
   }
