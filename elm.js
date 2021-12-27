@@ -7991,7 +7991,7 @@ var $author$project$Main$getAccessToken = F4(
 								A2(
 								$elm$http$Http$header,
 								'Access-Control-Allow-Origin',
-								$elm$url$Url$toString(config.tokenEndpoint))
+								$elm$url$Url$toString(redirectUri))
 							]),
 						authRequest.headers)
 				}));
