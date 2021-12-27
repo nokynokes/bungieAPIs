@@ -7970,6 +7970,7 @@ var $elm$http$Http$request = function (r) {
 };
 var $author$project$Main$getAccessToken = F4(
 	function (config, redirectUri, code, codeVerifier) {
+		var stringUrl = $elm$url$Url$toString(redirectUri);
 		var authRequest = A2(
 			$truqu$elm_oauth2$OAuth$AuthorizationCode$PKCE$makeTokenRequest,
 			$author$project$Main$GotAccessToken,
@@ -7984,9 +7985,12 @@ var $author$project$Main$getAccessToken = F4(
 			_Utils_update(
 				authRequest,
 				{
-					headers: A2(
-						$elm$core$List$cons,
-						A2($elm$http$Http$header, 'X-API-Key', '21fb29f290494bf3af8e86ed46a8d98e'),
+					headers: _Utils_ap(
+						_List_fromArray(
+							[
+								A2($elm$http$Http$header, 'X-API-Key', '21fb29f290494bf3af8e86ed46a8d98e'),
+								A2($elm$http$Http$header, 'Access-Control-Allow-Origin', stringUrl)
+							]),
 						authRequest.headers)
 				}));
 	});
