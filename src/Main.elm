@@ -180,7 +180,7 @@ getAccessToken config redirectUri code codeVerifier =
         , redirectUri = redirectUri
         }
   in
-    Http.request <| { authRequest | headers = Http.header "X-API-Key" "21fb29f290494bf3af8e86ed46a8d98e" :: authRequest.headers }
+    Http.request <| { authRequest | headers = Http.header "X-API-Key" "" :: authRequest.headers }
 
 gotAccessToken : Model -> Result Http.Error OAuth.AuthenticationSuccess -> ( Model, Cmd Msg )
 gotAccessToken model authResponse =
