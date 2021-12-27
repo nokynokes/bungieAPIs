@@ -7335,11 +7335,6 @@ var $author$project$Main$genRandomBytes = _Platform_outgoingPort('genRandomBytes
 var $author$project$Main$GotAccessToken = function (a) {
 	return {$: 'GotAccessToken', a: a};
 };
-var $elm$http$Http$Header = F2(
-	function (a, b) {
-		return {$: 'Header', a: a, b: b};
-	});
-var $elm$http$Http$header = $elm$http$Http$Header;
 var $truqu$elm_oauth2$OAuth$AuthorizationCode = {$: 'AuthorizationCode'};
 var $truqu$elm_oauth2$Internal$AuthenticationSuccess = F4(
 	function (token, refreshToken, expiresIn, scope) {
@@ -7495,6 +7490,11 @@ var $truqu$elm_oauth2$OAuth$grantTypeToString = function (g) {
 			return str;
 	}
 };
+var $elm$http$Http$Header = F2(
+	function (a, b) {
+		return {$: 'Header', a: a, b: b};
+	});
+var $elm$http$Http$header = $elm$http$Http$Header;
 var $chelovek0v$bbase64$Base64$Encode$StringEncoder = function (a) {
 	return {$: 'StringEncoder', a: a};
 };
@@ -7970,31 +7970,16 @@ var $elm$http$Http$request = function (r) {
 };
 var $author$project$Main$getAccessToken = F4(
 	function (config, redirectUri, code, codeVerifier) {
-		var stringUrl = $elm$url$Url$toString(redirectUri);
-		var authRequest = A2(
-			$truqu$elm_oauth2$OAuth$AuthorizationCode$PKCE$makeTokenRequest,
-			$author$project$Main$GotAccessToken,
-			{
-				code: code,
-				codeVerifier: codeVerifier,
-				credentials: {clientId: config.clientId, secret: $elm$core$Maybe$Nothing},
-				redirectUri: redirectUri,
-				url: config.tokenEndpoint
-			});
 		return $elm$http$Http$request(
-			_Utils_update(
-				authRequest,
+			A2(
+				$truqu$elm_oauth2$OAuth$AuthorizationCode$PKCE$makeTokenRequest,
+				$author$project$Main$GotAccessToken,
 				{
-					headers: _Utils_ap(
-						_List_fromArray(
-							[
-								A2($elm$http$Http$header, 'X-API-Key', '21fb29f290494bf3af8e86ed46a8d98e'),
-								A2($elm$http$Http$header, 'Access-Control-Allow-Origin', '*'),
-								A2($elm$http$Http$header, 'Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'),
-								A2($elm$http$Http$header, 'Access-Control-Allow-Headers', 'Authorization')
-							]),
-						authRequest.headers),
-					method: 'POST'
+					code: code,
+					codeVerifier: codeVerifier,
+					credentials: {clientId: config.clientId, secret: $elm$core$Maybe$Nothing},
+					redirectUri: redirectUri,
+					url: config.tokenEndpoint
 				}));
 	});
 var $author$project$Main$Authenticated = function (a) {
@@ -8083,11 +8068,7 @@ var $author$project$OAuthInfo$oauthConfig = {
 	scope: _List_Nil,
 	tokenEndpoint: _Utils_update(
 		$author$project$OAuthInfo$defaultHttpsUrl,
-		{
-			host: 'bungie.net',
-			path: '/Platform/App/OAuth/token/',
-			query: $elm$core$Maybe$Just('grant_type=authorization_code')
-		})
+		{host: 'bungie.net', path: '/Platform/App/OAuth/token/'})
 };
 var $author$project$Main$gotRandomBytes = F2(
 	function (model, bytes) {
