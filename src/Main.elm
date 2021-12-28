@@ -179,14 +179,26 @@ getAccessToken config redirectUri code codeVerifier =
         , url = config.tokenEndpoint
         , redirectUri = redirectUri
         }
-    stringUrl = Url.toString redirectUri
   in
-    Http.request <| { authRequest | headers =
-      [ Http.header "X-API-Key" "21fb29f290494bf3af8e86ed46a8d98e"
-      , Http.header "Access-Control-Allow-Origin" stringUrl
-      , Http.header "Access-Control-Allow-Methods" "POST"
-      ] ++ authRequest.headers }
-
+    Http.request <|
+      { authRequest | headers = [ Http.header "Access-Control-Allow-Origin" "*" ] }
+  -- Http.request <|
+  --   OAuth.makeTokenRequest GotAccessToken
+  --     { credentials =
+  --       { clientId = config.clientId
+  --       , secret = Nothing
+  --       }
+  --     , code = code
+  --     , codeVerifier = codeVerifier
+  --     , url = config.tokenEndpoint
+  --     , redirectUri = redirectUri
+  --     }
+  -- Http.request <|
+  --   { method = "POST",
+  --   , url = Url.toString config.tokenEndpoint
+  --   , headers = [ string "Content-Type" "application/x-www-form-urlencoded" ]
+  --   , body =
+  --   }
 gotAccessToken : Model -> Result Http.Error OAuth.AuthenticationSuccess -> ( Model, Cmd Msg )
 gotAccessToken model authResponse =
   case authResponse of

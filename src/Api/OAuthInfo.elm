@@ -50,7 +50,7 @@ oauthConfig =
   { authorizationEndpoint =
       { defaultHttpsUrl | host = "bungie.net", path = "/en/OAuth/Authorize" }
   , tokenEndpoint =
-      { defaultHttpsUrl | host = "bungie.net", path = "/Platform/App/OAuth/token/" }
-  , clientId = "38809"
+      { defaultHttpsUrl | host = "bungie.net", path = "/Platform/App/OAuth/Token/" }
+  , clientId = ""
   , scope = []
   }
