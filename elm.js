@@ -7987,11 +7987,7 @@ var $author$project$Main$getAccessToken = F4(
 					headers: _Utils_ap(
 						_List_fromArray(
 							[
-								A2($elm$http$Http$header, 'Authorization', 'Basic 21fb29f290494bf3af8e86ed46a8d98e'),
-								A2(
-								$elm$http$Http$header,
-								'Access-Control-Allow-Origin',
-								$elm$url$Url$toString(redirectUri))
+								A2($elm$http$Http$header, 'Authorization', 'Basic 21fb29f290494bf3af8e86ed46a8d98e')
 							]),
 						authRequest.headers)
 				}));
@@ -8082,7 +8078,7 @@ var $author$project$OAuthInfo$oauthConfig = {
 	scope: _List_Nil,
 	tokenEndpoint: _Utils_update(
 		$author$project$OAuthInfo$defaultHttpsUrl,
-		{host: 'bungie.net', path: '/platform/app/oauth/token'})
+		{host: 'bungie.net', path: '/Platform/App/OAuth/Token'})
 };
 var $author$project$Main$gotRandomBytes = F2(
 	function (model, bytes) {
