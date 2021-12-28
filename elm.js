@@ -7984,12 +7984,10 @@ var $author$project$Main$getAccessToken = F4(
 			_Utils_update(
 				authRequest,
 				{
-					headers: _Utils_ap(
-						_List_fromArray(
-							[
-								A2($elm$http$Http$header, 'Authorization', 'Basic 21fb29f290494bf3af8e86ed46a8d98e')
-							]),
-						authRequest.headers)
+					headers: _List_fromArray(
+						[
+							A2($elm$http$Http$header, 'Authorization', 'Basic 21fb29f290494bf3af8e86ed46a8d98e')
+						])
 				}));
 	});
 var $author$project$Main$Authenticated = function (a) {
