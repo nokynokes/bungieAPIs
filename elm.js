@@ -8076,7 +8076,7 @@ var $author$project$OAuthInfo$oauthConfig = {
 	scope: _List_Nil,
 	tokenEndpoint: _Utils_update(
 		$author$project$OAuthInfo$defaultHttpsUrl,
-		{host: 'bungie.net', path: '/Platform/App/OAuth/Token'})
+		{host: 'bungie.net', path: '/Platform/App/OAuth/Token/'})
 };
 var $author$project$Main$gotRandomBytes = F2(
 	function (model, bytes) {
